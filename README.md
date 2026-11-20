@@ -36,6 +36,30 @@ cloudflared tunnel --url http://localhost:3000
 
 Open the printed HTTPS URL on the PICO browser. The WebSocket client automatically selects `wss://` when the page is delivered using HTTPS. A temporary public tunnel is **not** appropriate for sensitive OptiTrack data or production.
 
+## Using with a real headset
+To test with a real headset, we need a HTTPS connection. The easiest way is to create a custom CA and certificate
+Install necessary packages:
+```
+sudo apt install mkcert libnss3-tools
+```
+Create local certificate authority
+```
+mkcert -install
+```
+Get the IP address of the PC running the server
+```
+hostname -I
+```
+Create the certificate *replace 192.168.1.100 with your IP*
+```
+mkdir -p certs
+
+mkcert \
+    -cert-file certs/server.pem \
+    -key-file certs/server-key.pem \
+    192.168.1.100 localhost 127.0.0.1
+```
+
 ## What the Python server does
 
 `server.py` serves the Vite-built files in `dist/` and exposes a `/poses` WebSocket. The JSON messages look like:
