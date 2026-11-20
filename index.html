@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PICO 4 WebXR AR Demo</title>
+    <style>
+      html, body { margin: 0; height: 100%; overflow: hidden; background: #181c25; font-family: system-ui, sans-serif; }
+      #info { position: absolute; top: 14px; left: 14px; right: 14px; z-index: 1;
+              color: white; background: rgba(0,0,0,.62); border-radius: 8px;
+              padding: 12px; max-width: 550px; pointer-events: none; line-height: 1.5; }
+      #info strong { display: block; }
+      #status { color: #c5deff; font-size: 0.9em; }
+    </style>
+  </head>
+  <body>
+    <div id="info">
+      <strong>PICO 4 / Three.js AR demo</strong>
+      A blue cube stays in place; an orange sphere receives simulated positions from the Python server.
+      Press START AR to enter passthrough mode.
+      <div id="status">Checking WebXR support…</div>
+      <div id="tracking-status">Connecting to Python pose server…</div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
